@@ -1,6 +1,7 @@
 #!/bin/bash
 
-SAMPLE_DIR="./samples"
+BASE_DIR="$(dirname $0)"
+SAMPLE_DIR="$BASE_DIR/samples"
 SAMPLE_LOG="processes-samples.txt"
 INTERVAL=10
 COMMAND="ps aux --sort=-pcpu | ./bin/ts '%Y-%m-%dT%H:%M:%S.%.S%z'"

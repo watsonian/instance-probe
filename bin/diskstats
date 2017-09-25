@@ -1,6 +1,7 @@
 #!/bin/bash
 
-SAMPLE_DIR="./samples"
+BASE_DIR="$(dirname $0)"
+SAMPLE_DIR="$BASE_DIR/samples"
 SAMPLE_LOG="diskstats-samples.txt"
 INTERVAL=1
 
