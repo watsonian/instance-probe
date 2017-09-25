@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SAMPLE_DIR="../samples"
+SAMPLE_LOG="diskstats-samples.txt"
+INTERVAL=1
+
+while true; do
+   sleep=$(date +%s.%N | awk "{print $INTERVAL - (\$1 % $INTERVAL)}")
+   sleep $sleep
+   date +"TS %s.%N %F %T" >> $SAMPLE_DIR/$SAMPLE_LOG
+   cat /proc/diskstats >> $SAMPLE_DIR/$SAMPLE_LOG
+done

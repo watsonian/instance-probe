@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SAMPLE_DIR="../samples"
+SAMPLE_LOG="processes-samples.txt"
+INTERVAL=10
+COMMAND="ps aux --sort=-pcpu | ./ts '%Y-%m-%dT%H:%M:%S.%4N%z'"
+
+while true; do
+  TIMESTAMP=`date "+%Y-%m-%dT%H:%M:%S.%4N%z"`
+  echo -e "\n\n[$TIMESTAMP] Active Process Dump ==========================================" >> $SAMPLE_DIR/$SAMPLE_LOG
+  echo $COMMAND | bash >> $SAMPLE_DIR/$SAMPLE_LOG
+  sleep $SLEEP_TIME
+done
