@@ -8,7 +8,7 @@ mkdir -p $SAMPLE_DIR
 
 while true; do
    sleep=$(date +%s.%N | awk "{print $INTERVAL - (\$1 % $INTERVAL)}")
-   sleep $sleep
+   sleep $INTERVAL
    date +"TS %s.%N %F %T" >> $SAMPLE_DIR/$SAMPLE_LOG
    cat /proc/diskstats >> $SAMPLE_DIR/$SAMPLE_LOG
 done

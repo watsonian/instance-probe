@@ -9,5 +9,5 @@ mkdir -p $SAMPLE_DIR
 
 while true; do
   echo $COMMAND | bash >> $SAMPLE_DIR/$SAMPLE_LOG
-  sleep $SLEEP_TIME
+  sleep $INTERVAL
 done
