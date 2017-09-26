@@ -1,14 +1,14 @@
 #!/bin/bash
 
-BASE_DIR="$(dirname $0)"
+BASE_DIR="$(dirname $(dirname $(readlink -f "$0")))"
 SAMPLE_DIR="$BASE_DIR/samples"
-SAMPLE_LOG="processes-samples.txt"
+SAMPLE_LOG="$SAMPLE_DIR/processes-samples.txt"
 INTERVAL=10
 COMMAND="ps aux --sort=-pcpu | $BASE_DIR/bin/ts '%Y-%m-%dT%H:%M:%S.%.S%z'"
 
 mkdir -p $SAMPLE_DIR
 
 while true; do
-  echo $COMMAND | bash >> $SAMPLE_DIR/$SAMPLE_LOG
+  echo $COMMAND | bash >> $SAMPLE_LOG
   sleep $INTERVAL
 done

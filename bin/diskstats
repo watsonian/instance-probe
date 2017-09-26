@@ -1,8 +1,8 @@
 #!/bin/bash
 
-BASE_DIR="$(dirname $0)"
+BASE_DIR="$(dirname $(dirname $(readlink -f "$0")))"
 SAMPLE_DIR="$BASE_DIR/samples"
-SAMPLE_LOG="diskstats-samples.txt"
+SAMPLE_LOG="$SAMPLE_DIR/diskstats-samples.txt"
 INTERVAL=1
 
 mkdir -p $SAMPLE_DIR
@@ -10,6 +10,6 @@ mkdir -p $SAMPLE_DIR
 while true; do
    sleep=$(date +%s.%N | awk "{print $INTERVAL - (\$1 % $INTERVAL)}")
    sleep $INTERVAL
-   date +"TS %s.%N %F %T" >> $SAMPLE_DIR/$SAMPLE_LOG
-   cat /proc/diskstats >> $SAMPLE_DIR/$SAMPLE_LOG
+   date +"TS %s.%N %F %T" >> $SAMPLE_LOG
+   cat /proc/diskstats >> $SAMPLE_LOG
 done
