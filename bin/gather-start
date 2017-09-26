@@ -1,0 +1,18 @@
+#!/bin/bash
+
+BASE_DIR="$(dirname $(dirname $(readlink -f "$0")))"
+PID_DIR="$BASE_DIR/pids"
+
+mkdir -p $PID_DIR
+
+echo "Starting bin/processes..."
+$BASE_DIR/bin/processes &
+echo $! > $PID_DIR/processes.pid
+
+echo "Starting bin/diskstats..."
+$BASE_DIR/bin/diskstats &
+echo $! > $PID_DIR/diskstats.pid
+
+echo
+echo "Run bin/gather-stop to kill running processes. Gathered information will"
+echo "be in the samples/ directory."
